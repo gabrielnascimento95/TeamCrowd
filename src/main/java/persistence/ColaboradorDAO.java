@@ -18,7 +18,7 @@ import model.Repositorio;
  * @author Rian Alves
  */
 public class ColaboradorDAO {
-     private static final ColaboradorDAO INSTANCE = new ColaboradorDAO();
+    private static final ColaboradorDAO INSTANCE = new ColaboradorDAO();
 
     public static ColaboradorDAO getINSTANCE() {
         return INSTANCE;
