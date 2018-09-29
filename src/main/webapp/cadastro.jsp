@@ -57,7 +57,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <!-- Text input-->
             <div class="form-group">
               <label class="col-md-4 control-label" for="nomeUsuario">Nome : </label>  
-              <div class="col-md-2">
+              <div class="col-md-6">
               <input id="txtcodigo_produto_id" name="nomeUsuario" type="text" placeholder="" class="form-control input-md">
 
               </div>
@@ -74,6 +74,18 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
             <!-- Select Basic -->
             <div class="form-group">
+              <label class="col-md-4 control-label" for="estudo">Nível : </label>
+              <div class="col-md-4">
+                <select id="txtgrupo" name="estudo" class="form-control">
+                  <option value="1">Iniciante</option>
+                  <option value="2">Junior</option>
+                  <option value="3">Pleno</option>
+                  <option value="4">Senior</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
               <label class="col-md-4 control-label" for="profissao">Profissão : </label>
               <div class="col-md-4">
                 <select id="txtgrupo" name="profissao" class="form-control">
@@ -85,6 +97,13 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
               </div>
             </div>
             
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="dataNasc">Data Nascimento : </label>  
+              <div class="col-md-2">
+              <input id="txtestoque_minimo" name="DataNasc" type="text" placeholder="Formato (DD/MM/AAAA)" class="form-control input-md" required="">
+
+              </div>
+            </div>
             <!-- Text input-->
             <div class="form-group">
               <label class="col-md-4 control-label" for="senhaUsuario">Senha : </label>  
@@ -97,12 +116,20 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <!-- Text input-->
             <div class="form-group">
               <label class="col-md-4 control-label" for="emailUsario">Email : </label>  
-              <div class="col-md-2">
+              <div class="col-md-4">
               <input id="txtestoque_atual" name="emailUsario" type="text" placeholder="" class="form-control input-md">
 
               </div>
             </div>
+            
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="descricao">Descrição : </label>  
+              <div class="col-md-6">
+              <input id="txtestoque_atual" name="descrição" type="text" placeholder="" class="form-control input-md">
 
+              </div>
+            </div>
+            
             <!-- Button (Double) -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="btnsalvar"></label>
