@@ -30,8 +30,8 @@ public class CadastroUsuarioDAO {
         try {
             conn = DataBaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            String sql = "INSERT into colaborador(idcolaborador,nome,email,numContribuicoes,numSeguidores,numSeguidos,localizacao,urlImagem,url) values (" 
-                    + colaborador.getIdColaborador() + ",'" + colaborador.getNome() + "','" + colaborador.getEmail() + "'," + colaborador.getContribuicao() + "," + colaborador.getNumseguidos() + "," + colaborador.getNumseguidores()+ ",'"  + colaborador.getLocalizacao() + "','"  + colaborador.getUrl() + "','"  + colaborador.getImagem_URL() + "')";
+            String sql = "INSERT into usuario(nome,email,senha,token,profissional,estudo,descricao,dt_nascimento) values ('" 
+                    + novoUsuario.getNome() + "','" + novoUsuario.getEmail() + "','" + novoUsuario.getSenha() + "','" + novoUsuario.getToken() + "','" + novoUsuario.getProfissional() + "','" + novoUsuario.getEstudo()+ "','"  + novoUsuario.getDescricao() + "','"  + novoUsuario.getData_nascimento() + "')";
             st.execute(sql);
         } catch (SQLException e) {
             throw e;

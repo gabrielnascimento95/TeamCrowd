@@ -5,6 +5,7 @@
  */
 package action;
 
+import br.ufjf.teamcrowd.Conexao;
 import controller.Action;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,23 +25,35 @@ public class AutenticaUsuarioAction implements Action{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
-        String nome = (String) request.getParameter("usuario");
+        Conexao conection = new Conexao();
+        String email = (String) request.getParameter("usuario");
         String senha = (String)request.getParameter("senha");
-        try {
-            boolean auth = UsuarioDAO.getINSTANCE().authUser(nome, senha);
-            if(auth){
-                HttpSession session = request.getSession(true);
-                session.setAttribute("logado", new String("true"));
-                response.setContentType("text/html;charset=UTF-8");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }else{
-               response.setContentType("text/html;charset=UTF-8");
-                request.getRequestDispatcher("login.jsp").forward(request, response); 
-            }
+        boolean auth = false;
+        int idUser = 0;
+        String token = "";
+
+      try {        
+            auth = UsuarioDAO.getINSTANCE().authUser(email, senha);
+            idUser = UsuarioDAO.getINSTANCE().getIdUser(email);
+            token = UsuarioDAO.getINSTANCE().getToken(email);
         } catch (SQLException ex) {
             Logger.getLogger(AutenticaUsuarioAction.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        if(auth){
+           HttpSession session = request.getSession(true);
+           session.setAttribute("logado", new String("true"));
+           session.setAttribute("idUser", idUser);
+           session.setAttribute("token", token);
+           response.setContentType("text/html;charset=UTF-8");
+           request.getRequestDispatcher("index.jsp").forward(request, response);
+        }else if(request.getSession().getAttribute("logado").equals(new String("true"))){
+           response.setContentType("text/html;charset=UTF-8");
+           request.getRequestDispatcher("index.jsp").forward(request, response);
+        }else{
+            response.setContentType("text/html;charset=UTF-8");
+           request.getRequestDispatcher("erro.jsp").forward(request, response);
+        }
     }
     
 }

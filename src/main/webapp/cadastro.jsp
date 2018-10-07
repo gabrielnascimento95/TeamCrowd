@@ -100,7 +100,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <div class="form-group">
               <label class="col-md-4 control-label" for="dataNasc">Data Nascimento : </label>  
               <div class="col-md-2">
-              <input id="txtestoque_minimo" name="DataNasc" type="text" placeholder="Formato (DD/MM/AAAA)" class="form-control input-md" required="">
+              <input id="txtestoque_minimo" name="dataNasc" type="text" placeholder="Formato (DD/MM/AAAA)" class="form-control input-md" required="">
 
               </div>
             </div>
@@ -125,7 +125,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <div class="form-group">
               <label class="col-md-4 control-label" for="descricao">Descrição : </label>  
               <div class="col-md-6">
-              <input id="txtestoque_atual" name="descrição" type="text" placeholder="" class="form-control input-md">
+              <input id="txtestoque_atual" name="descricao" type="text" placeholder="" class="form-control input-md">
 
               </div>
             </div>
@@ -134,13 +134,12 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <div class="form-group">
               <label class="col-md-4 control-label" for="btnsalvar"></label>
               <div class="col-md-8">
-                <button type="submit" id="btnsalvar" name="btnsalvar" class="btn btn-primary">Salvar</button>
-                <button id="btncancelar" name="btncancelar" class="btn btn-danger">Cancelar</button>
+                <button type="submit" id="btnsalvar" name="btnsalvar" class="btn btn-primary">Salvar</button>                 
               </div>
             </div>
-
             </fieldset>
             </form>
+            <a href="login.jsp"><button id="btncancelar" name="btncancelar" class="btn btn-danger">Cancelar</button></a>
             
     </div>
         <%@include file="jspf/footer.jspf" %>

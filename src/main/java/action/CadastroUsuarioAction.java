@@ -7,10 +7,14 @@ package action;
 
 import controller.Action;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Usuario;
+import persistence.CadastroUsuarioDAO;
 
 /**
  *
@@ -26,10 +30,18 @@ public class CadastroUsuarioAction implements Action{
         String profissao = (String) request.getParameter("profissao");
         String senha = (String) request.getParameter("senhaUsuario");
         String email = (String) request.getParameter("emailUsario");
-        String descricao = (String) request.getParameter("descrição");
+        String descricao = (String) request.getParameter("descricao");
         String dataNascimento = (String) request.getParameter("dataNasc");
         
         Usuario user = new Usuario(nome,email,senha,token,profissao,nivel,descricao, dataNascimento);
+        CadastroUsuarioDAO save = new CadastroUsuarioDAO();
+        try {
+            save.save(user);
+            response.setContentType("text/html;charset=UTF-8");
+           request.getRequestDispatcher("login.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroUsuarioAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
