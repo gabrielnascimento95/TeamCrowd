@@ -125,10 +125,10 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <div class="form-group">
               <label class="col-md-4 control-label" for="descricao">Descrição : </label>  
               <div class="col-md-6">
-              <input id="txtestoque_atual" name="descricao" type="text" placeholder="" class="form-control input-md">
-
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
             </div>
+            
             
             <!-- Button (Double) -->
             <div class="form-group">
