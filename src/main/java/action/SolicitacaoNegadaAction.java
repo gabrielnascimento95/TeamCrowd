@@ -15,14 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gabriel
  */
-public class CadastroGrupoAction implements Action {
+public class SolicitacaoNegadaAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
-        String nome = (String) request.getParameter("nome");
-        String descricao = (String) request.getParameter("descricao");
-        String tipo = (String) request.getParameter("tipo");
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

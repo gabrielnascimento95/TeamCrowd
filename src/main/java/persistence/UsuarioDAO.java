@@ -10,7 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
+import model.Usuario;
 
 /**
  *
@@ -94,6 +99,32 @@ public class UsuarioDAO {
             closeResources(conn, st);
         }
         return id;
+    }
+    
+    public List<Usuario> getUsers() throws ClassNotFoundException{
+        List<Usuario> lstUsuarios = new ArrayList<Usuario>();
+      
+        Connection conn = null;
+        Statement stmt1 = null;
+        
+        try {
+            conn = DataBaseLocator.getInstance().getConnection();
+            String sql = "SELECT * FROM usuario" ;
+            stmt1 = conn.createStatement();
+            ResultSet rs = stmt1.executeQuery(sql);
+            
+            while (rs.next()) {  
+               lstUsuarios.add(new Usuario(rs.getString("nome"), rs.getString("email"), rs.getString("senha"), rs.getString("token"), rs.getString("profissional"), rs.getString("estudo"), rs.getString("descricao"), rs.getString("dt_nascimento")));
+            }
+
+        }catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            closeResources(conn, stmt1);
+        }
+           
+        return lstUsuarios;
+        
     }
     
     private void closeResources(Connection conn, Statement st) {

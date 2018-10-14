@@ -7,22 +7,29 @@ package action;
 
 import controller.Action;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Usuario;
+import persistence.UsuarioDAO;
 
 /**
  *
  * @author gabriel
  */
-public class CadastroGrupoAction implements Action {
+public class EnviaSolicitacaoAction implements Action{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
-        String nome = (String) request.getParameter("nome");
-        String descricao = (String) request.getParameter("descricao");
-        String tipo = (String) request.getParameter("tipo");
+        List<Usuario> lstUsuarios = new ArrayList<>();
+        lstUsuarios = UsuarioDAO.getINSTANCE().getUsers();
+        request.setAttribute("listaUsuarios", lstUsuarios);
         
+        RequestDispatcher despachante = request.getRequestDispatcher("/enviaSolicitacao.jsp");
+        despachante.forward(request, response);
     }
     
 }

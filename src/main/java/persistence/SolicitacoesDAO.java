@@ -8,35 +8,32 @@ package persistence;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import model.Grupo;
 
 /**
  *
  * @author gabriel
  */
-public class GrupoDAO {
-    private static final GrupoDAO INSTANCE = new GrupoDAO();
+public class SolicitacoesDAO {
+    private static final SolicitacoesDAO INSTANCE = new SolicitacoesDAO();
 
-    public static GrupoDAO getINSTANCE() {
+    public static SolicitacoesDAO getINSTANCE() {
         return INSTANCE;
     }
-    
-    public void save(Grupo novoGrupo) throws SQLException, ClassNotFoundException {
+
+    public void save() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         Statement st = null;
 
         try {
             conn = DataBaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            String sql = "INSERT into grupo(nome,descricao,tipo) values ('" 
-                    + novoGrupo.getNome() + "','" + novoGrupo.getDescricao()+ "','" + novoGrupo.getTipo() + "')";
+            String sql ="" ;
             st.execute(sql);
         } catch (SQLException e) {
             throw e;
         } finally {
             closeResources(conn, st);
         }
-
     }
     
     private void closeResources(Connection conn, Statement st) {
@@ -51,5 +48,4 @@ public class GrupoDAO {
             ex.getErrorCode();
         }
     }
-    
 }

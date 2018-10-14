@@ -3,7 +3,7 @@
     Created on : 07/10/2018, 19:15:40
     Author     : gabriel
 --%>
-
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <<%@include file="jspf/header.jspf" %>
@@ -53,7 +53,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="nomeUsuario">Nome : </label>  
+              <label class="col-md-4 control-label" for="nomeUsuario">Nome do grupo: </label>  
               <div class="col-md-6">
               <input id="txtcodigo_produto_id" name="nomeUsuario" type="text" placeholder="" class="form-control input-md">
 
@@ -61,17 +61,19 @@
             </div>
             
             <div class="form-group">
-                <label class="col-md-4 control-label" for="descricao">Usuários</label>
+                <label class="col-md-4 control-label" for="descricao">Contexto do grupo: </label>
                 <div class="col-md-6">
-                    <select multiple class="form-control" id="usuariosConvidados">
-                        <option>fulano@email.com</option>
-                        <option>fulano@email.com</option>
-                        <option>fulano@email.com</option>
-                        <option>fulano@email.com</option>
-                    </select>
+                    <input list="contexts" name="browser" class="form-control input-md">
+                    <datalist id="contexts">
+                        <option value="Desenvolvimento Web Java EE">
+                        <option value="Desenvolvimento Web PHP">
+                        <option value="Desenvolvimento Mobile Android">
+                        <option value="Desenvolvimento Mobile Apple">
+                        <option value="Desenvolvimento ASP.NET">
+                    </datalist>
                 </div>
              </div>
-            
+                     
             <div class="form-group">
               <label class="col-md-4 control-label" for="descricao">Descrição : </label>  
               <div class="col-md-6">

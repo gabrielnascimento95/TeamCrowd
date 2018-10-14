@@ -39,7 +39,7 @@
                 </form>
             </div>
             <div class="col-sm-2">
-                <form class="form-horizontal" method="post" role="form" action="FrontController?action=solicitacaoAceita">
+                <form class="form-horizontal" method="post" role="form" action="FrontController?action=solicitacaoNegada">
                     <fieldset>
                       <div class="form-group">
                            <label class="col-md-4 control-label" for="btnsalvar"></label>

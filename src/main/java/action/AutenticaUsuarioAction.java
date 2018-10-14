@@ -29,13 +29,13 @@ public class AutenticaUsuarioAction implements Action{
         String email = (String) request.getParameter("usuario");
         String senha = (String)request.getParameter("senha");
         boolean auth = false;
-        int idUser = 0;
-        String token = "";
+        //int idUser = 0;
+        //String token = "";
 
       try {        
             auth = UsuarioDAO.getINSTANCE().authUser(email, senha);
-            idUser = UsuarioDAO.getINSTANCE().getIdUser(email);
-            token = UsuarioDAO.getINSTANCE().getToken(email);
+            //idUser = UsuarioDAO.getINSTANCE().getIdUser(email);
+            //token = UsuarioDAO.getINSTANCE().getToken(email);
         } catch (SQLException ex) {
             Logger.getLogger(AutenticaUsuarioAction.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -43,8 +43,8 @@ public class AutenticaUsuarioAction implements Action{
         if(auth){
            HttpSession session = request.getSession(true);
            session.setAttribute("logado", new String("true"));
-           session.setAttribute("idUser", idUser);
-           session.setAttribute("token", token);
+           //session.setAttribute("idUser", idUser);
+           //session.setAttribute("token", token);
            response.setContentType("text/html;charset=UTF-8");
            request.getRequestDispatcher("index.jsp").forward(request, response);
         }else if(request.getSession().getAttribute("logado").equals(new String("true"))){
