@@ -55,15 +55,15 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="nomeUsuario">Nome do grupo: </label>  
               <div class="col-md-6">
-              <input id="txtcodigo_produto_id" name="nomeUsuario" type="text" placeholder="" class="form-control input-md">
+              <input id="txtcodigo_produto_id" name="nome" type="text" placeholder="" class="form-control input-md">
 
               </div>
             </div>
             
             <div class="form-group">
-                <label class="col-md-4 control-label" for="descricao">Contexto do grupo: </label>
+                <label class="col-md-4 control-label" for="tipo">Contexto do grupo: </label>
                 <div class="col-md-6">
-                    <input list="contexts" name="browser" class="form-control input-md">
+                    <input list="contexts" name="tipo" class="form-control input-md">
                     <datalist id="contexts">
                         <option value="Desenvolvimento Web Java EE">
                         <option value="Desenvolvimento Web PHP">
@@ -77,7 +77,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="descricao">Descrição : </label>  
               <div class="col-md-6">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
             </div>
             

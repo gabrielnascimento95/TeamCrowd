@@ -127,6 +127,30 @@ public class UsuarioDAO {
         
     }
     
+    public String getEmail(String nome) throws ClassNotFoundException, SQLException{
+        Connection conn = null;
+        PreparedStatement st = null;
+        String email = "";
+
+        try {
+            conn = DataBaseLocator.getInstance().getConnection();
+            st = conn.prepareStatement("SELECT email FROM usuario WHERE nome= ? ");
+            st.setString(1, nome);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    email = rs.getString("email");
+                }
+            }catch (Exception e){
+                System.out.printf("Problema com o Statement");
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+        return email;
+    }
+    
     private void closeResources(Connection conn, Statement st) {
         try {
             if (st != null) {
