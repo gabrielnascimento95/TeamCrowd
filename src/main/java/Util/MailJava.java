@@ -5,6 +5,7 @@ public class MailJava {
     public String nome;
     public String email;
     public String login;
+    public String nomeRemetente;
     //indica se o formato de texto será texto ou html
     public static final String TYPE_TEXT_PLAIN = "text/plain";
     public static final String TYPE_TEXT_HTML = "text/html";
@@ -24,19 +25,20 @@ public class MailJava {
     //senha do email do remetente
     private final String passMail = "cadilac123";
     //assunto do email
-    private String subjectMail = "Convite para colaborar na Validação de Requisitos no Contexto de ";
+    private String subjectMail = "Convite para fazer parte do grupo ";
     private String contexto;
     //charset, no caso de html e necessario
     private final String charsetMail = "ISO-8859-1";
     //tipo do formato da mensagem, texto ou html
     private final String typeTextMail = MailJava.TYPE_TEXT_HTML;
 
-    public MailJava(String nome, String email, String contexto, String login) {
+    public MailJava(String nome, String email, String contexto, String nomeRemetente) {
         this.nome = nome;
         this.email = email;
         this.subjectMail = subjectMail + contexto.toUpperCase();
         this.contexto = contexto;
         this.login = login;
+        this.nomeRemetente = nomeRemetente;
     }
 
     public String getSmtpStarttls() {
@@ -308,9 +310,7 @@ public class MailJava {
                 + "\n"
                 + "\n"
                 + "                                        <div style=\"line-height: 24px\">\n"
-                + "                                           Você foi convidado para ajudar na validação de requisitos no Contexto de <span style=\"color: #5caad2;\">"+this.contexto+"</span>. Caso deseje ajudar, clique no link abaixo e realize o login com os seguintes dados:\n"
-                + "                                           <p  style=\"font-size: 20px\"><span style=\"color: #0000ff;\">Login: "+this.login+"</span></p>\n"
-                + "                                           <p  style=\"font-size: 20px\"><span style=\"color: #0000ff;\">Senha: ater588</span></p>\n"
+                + "                                           Você foi convidado para colaborar no desenvolvimento de um projeto de software. Caso deseje participar do grupo, aceite a solicitacao clicando no link abaixo.\n"
                 + "                                        </div>\n"
                 + "                                    </td>\n"
                 + "                                </tr>\n"
@@ -335,7 +335,15 @@ public class MailJava {
                 + "\n"
                 + "\n"
                 + "                                        <div style=\"line-height: 26px;\">\n"
-                + "                                            <a href=\"http://localhost:8080/GithubMineration/\" style=\"color: #ffffff; text-decoration: none;\">Participar Agora</a>\n"
+                + "                                            <a href=\"http://localhost:8080/GithubMineration/\" style=\"color: #ffffff; text-decoration: none;\">Participar</a>\n"
+                + "                                    </td>\n"
+                + "                                </tr>\n"
+                + "                                <tr>\n"
+                + "                                    <td align=\"center\" style=\"color: #ffffff; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 26px;\">\n"
+                + "\n"
+                + "\n"
+                + "                                        <div style=\"line-height: 26px;\">\n"
+                + "                                            <a href=\"http://localhost:8080/GithubMineration/\" style=\"color: #ffffff; text-decoration: none;\">Não participar</a>\n"
                 + "                                        </div>\n"
                 + "                                    </td>\n"
                 + "                                </tr>\n"
@@ -382,7 +390,7 @@ public class MailJava {
                 + "                                <tr>\n"
                 + "                                    <!-- logo -->\n"
                 + "                                    <td align=\"left\">\n"
-                + "                                        <a href=\"\" style=\"display: block; border-style: none !important; border: 0 !important;\"><img width=\"80\" border=\"0\" style=\"display: block; width: 150px;\" src=\"https://image.ibb.co/kfp0N8/Validar_Thumb.jpg\" alt=\"\" /></a>\n"
+                + "                                        <a href=\"\" style=\"display: block; border-style: none !important; border: 0 !important;\"><img width=\"80\" border=\"0\" style=\"display: block; width: 150px;\" src=\"http://localhost:8080/TeamCrowd/imagens/crowedsource.jpg\" alt=\"\" /></a>\n"
                 + "                                    </td>\n"
                 + "                                </tr>\n"
                 + "\n"
@@ -468,9 +476,6 @@ public class MailJava {
                 + "                                <tr>\n"
                 + "                                    <td align=\"left\" style=\"color: #aaaaaa; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;\">\n"
                 + "                                        <div style=\"line-height: 24px;\">\n"
-                + "\n"
-                + "                                            <span style=\"color: #333333;\">Material Design for Bootstrap</span>\n"
-                + "\n"
                 + "                                        </div>\n"
                 + "                                    </td>\n"
                 + "                                </tr>\n"

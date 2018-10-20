@@ -46,7 +46,7 @@ public class MailJavaSender {
         };
 
         // Cria a sessao passando as propriedades e a autenticacao
-        Session session = Session.getDefaultInstance(props, auth);
+        Session session = Session.getInstance(props, auth);
         // Gera um log no console referente ao processo de envio
         session.setDebug(false);
 
@@ -80,5 +80,7 @@ public class MailJavaSender {
 
         // Envia a Mensagem
         Transport.send(msg);
+        
     }
+    
 }

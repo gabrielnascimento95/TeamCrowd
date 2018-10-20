@@ -5,18 +5,17 @@
  */
 package action;
 
-import Util.MailJava;
-import Util.MailJavaSender;
 import controller.Action;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Solicitacao;
+import persistence.SolicitacoesDAO;
 import persistence.UsuarioDAO;
 
 /**
@@ -27,39 +26,32 @@ public class EnviaSolicitacaoAction implements Action{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
+        HttpSession session = request.getSession();
         String grupo = (String) request.getParameter("grupos");
         String nomeUsuarioInt = (String) request.getParameter("usersInt");
         String nomeUsuarioExt = (String) request.getParameter("nomeUserEx");
         String emailUsuarioExt = (String) request.getParameter("emailUserEx");
-        String email = "00";
+        String emailUsuarioInt = " ";
+        String nomeUsuarioLogado = (String) session.getAttribute("nomeUsuarioLogado");
+        DisparaEmailAction correio = new DisparaEmailAction();
         
-        try {
-            email = UsuarioDAO.getINSTANCE().getEmail(nomeUsuarioInt);
-            System.out.print(email);
-        } catch (SQLException ex) {
-            Logger.getLogger(EnviaSolicitacaoAction.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        if(nomeUsuarioInt.isEmpty() && !nomeUsuarioExt.isEmpty() && !emailUsuarioExt.isEmpty()){
+        if(!nomeUsuarioInt.isEmpty()){
             try{
-                new MailJavaSender().senderMail(new MailJava(nomeUsuarioExt,emailUsuarioExt, grupo,emailUsuarioExt));
-                System.out.print("Feito");
-            }catch (UnsupportedEncodingException | MessagingException e) {
-                System.out.print(e.getMessage());
-            }   
-        }else if(!nomeUsuarioInt.isEmpty() && nomeUsuarioExt.isEmpty() && emailUsuarioExt.isEmpty()){
-            try{
-                new MailJavaSender().senderMail(new MailJava(nomeUsuarioInt,email, grupo,email));
-                System.out.print("Feito");
-            }catch (UnsupportedEncodingException | MessagingException e) {
-                System.out.print(e.getMessage());
+                emailUsuarioInt = UsuarioDAO.getINSTANCE().getEmail(nomeUsuarioInt);
+                SolicitacoesDAO.getINSTANCE().save(new Solicitacao(grupo,nomeUsuarioInt,emailUsuarioInt));
+                System.out.print(emailUsuarioInt);
+                correio.disparaEmail(nomeUsuarioInt, emailUsuarioInt, grupo, nomeUsuarioLogado);
+            }catch (SQLException ex) {
+                Logger.getLogger(EnviaSolicitacaoAction.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
-            response.setContentType("text/html;charset=UTF-8");
-            request.getRequestDispatcher("FrontController?action=PreEnvioSolicitacao").forward(request, response);
+            try {
+                SolicitacoesDAO.getINSTANCE().save(new Solicitacao(grupo,nomeUsuarioExt,emailUsuarioExt));
+                correio.disparaEmail(nomeUsuarioExt, emailUsuarioExt, grupo, nomeUsuarioLogado);
+            } catch (SQLException ex) {
+                Logger.getLogger(EnviaSolicitacaoAction.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-         
-            
-    }
-    
+    }   
 }

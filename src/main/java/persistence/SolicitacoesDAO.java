@@ -8,6 +8,7 @@ package persistence;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import model.Solicitacao;
 
 /**
  *
@@ -20,20 +21,22 @@ public class SolicitacoesDAO {
         return INSTANCE;
     }
 
-    public void save() throws SQLException, ClassNotFoundException {
+    public void save(Solicitacao novaSolicitacao) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         Statement st = null;
 
         try {
             conn = DataBaseLocator.getInstance().getConnection();
             st = conn.createStatement();
-            String sql ="" ;
+            String sql = "INSERT into solicitacoes(grupo,usuario,email, status) values ('" 
+                    + novaSolicitacao.getGrupo() + "','" + novaSolicitacao.getUsuario() + "','" + novaSolicitacao.getEmail() + "','"  + novaSolicitacao.getStatus() + "')";
             st.execute(sql);
         } catch (SQLException e) {
             throw e;
         } finally {
             closeResources(conn, st);
         }
+    
     }
     
     private void closeResources(Connection conn, Statement st) {
