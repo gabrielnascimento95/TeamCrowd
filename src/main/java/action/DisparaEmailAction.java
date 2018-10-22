@@ -20,9 +20,9 @@ public class DisparaEmailAction {
     }
     
     
-    public void disparaEmail(String nomeUsuario, String emailUsuario, String grupo, String emailAnfitriao){
+    public void disparaEmail(String nomeUsuario, String emailUsuario, String grupo, String nomeAnfitriao){
         try{
-            new MailJavaSender().senderMail(new MailJava(nomeUsuario,emailUsuario, grupo,emailAnfitriao));
+            new MailJavaSender().senderMail(new MailJava(nomeUsuario,emailUsuario, grupo,nomeAnfitriao));
             System.out.print("Enviado com sucesso.");
         }catch (UnsupportedEncodingException | MessagingException e) {
             System.out.print(e.getMessage());

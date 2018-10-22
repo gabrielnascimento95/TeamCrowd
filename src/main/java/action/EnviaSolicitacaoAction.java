@@ -32,7 +32,8 @@ public class EnviaSolicitacaoAction implements Action{
         String nomeUsuarioExt = (String) request.getParameter("nomeUserEx");
         String emailUsuarioExt = (String) request.getParameter("emailUserEx");
         String emailUsuarioInt = " ";
-        String nomeUsuarioLogado = (String) session.getAttribute("nomeUsuarioLogado");
+        //String nomeUsuarioLogado = session.getAttribute("nomeUsuarioLogado").toString();
+        String nomeUsuarioLogado = "Gabriel Nascimento";
         DisparaEmailAction correio = new DisparaEmailAction();
         
         
