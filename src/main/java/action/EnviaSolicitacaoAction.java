@@ -27,13 +27,15 @@ public class EnviaSolicitacaoAction implements Action{
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
         HttpSession session = request.getSession();
+        int idUsuarioLogado;
         String grupo = (String) request.getParameter("grupos");
         String nomeUsuarioInt = (String) request.getParameter("usersInt");
         String nomeUsuarioExt = (String) request.getParameter("nomeUserEx");
         String emailUsuarioExt = (String) request.getParameter("emailUserEx");
         String emailUsuarioInt = " ";
         //String nomeUsuarioLogado = session.getAttribute("nomeUsuarioLogado").toString();
-        String nomeUsuarioLogado = "Gabriel Nascimento";
+        String nomeUsuarioLogado = "Gabriel";
+        String emailUsuarioLogado = "gabrieljf13@gmail.com";
         DisparaEmailAction correio = new DisparaEmailAction();
         
         
@@ -41,6 +43,7 @@ public class EnviaSolicitacaoAction implements Action{
             try{
                 emailUsuarioInt = UsuarioDAO.getINSTANCE().getEmail(nomeUsuarioInt);
                 SolicitacoesDAO.getINSTANCE().save(new Solicitacao(grupo,nomeUsuarioInt,emailUsuarioInt));
+                idUsuarioLogado = UsuarioDAO.getINSTANCE().getIdUser(emailUsuarioLogado);
                 System.out.print(emailUsuarioInt);
                 correio.disparaEmail(nomeUsuarioInt, emailUsuarioInt, grupo, nomeUsuarioLogado);
             }catch (SQLException ex) {

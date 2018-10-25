@@ -50,7 +50,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
     <div align="center">
         <form method="post" role="form" action="FrontController?action=AutenticaUsuario">
             <label for="usuario_input">Login</label>
-            <input type="text" class="form-control" id="usuario_input" name="usuario"><br>
+            <input type="text" class="form-control" id="usuario_input" name="usuario" ><br>
             <label for="senha_input">Senha</label>                    
             <input type="password" class="form-control input normal" id="senha_input" name="senha">
            <button type="submit" class="btn btn-default">Confirmar</button>     

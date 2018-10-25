@@ -45,6 +45,7 @@ public class AutenticaUsuarioAction implements Action{
            session.setAttribute("logado", new String("true"));
            //session.setAttribute("idUser", idUser);
            session.setAttribute("nomeUsuarioLogado", nomeUsuarioLogado);
+           session.setAttribute("emailUsuarioLogado", email);
            response.setContentType("text/html;charset=UTF-8");
            request.getRequestDispatcher("index.jsp").forward(request, response);
         }else if(request.getSession().getAttribute("logado").equals(new String("true"))){

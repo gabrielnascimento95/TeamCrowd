@@ -6,9 +6,15 @@
 package persistence;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Solicitacao;
+import model.Usuario;
 
 /**
  *
@@ -37,6 +43,66 @@ public class SolicitacoesDAO {
             closeResources(conn, st);
         }
     
+    }
+    
+    public void atualizaStatus(String nome, String email, String grupo) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        Statement st = null;
+
+        try {
+            conn = DataBaseLocator.getInstance().getConnection();
+            st = conn.createStatement();
+            String sql = "UPDATE solicitacoes set status = 'ativo' where email = '"+ email  +"' and usuario ='" + nome +"' and grupo = '"+ grupo +"'";
+            st.execute(sql);
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+    
+    }
+    
+    public void NaoAtualizaStatus(String nome, String email, String grupo) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        Statement st = null;
+
+        try {
+            conn = DataBaseLocator.getInstance().getConnection();
+            st = conn.createStatement();
+            String sql = "UPDATE solicitacoes set status = 'recusado' where email = '"+ email  +"' and usuario ='" + nome +"' and grupo = '"+ grupo +"'";
+            st.execute(sql);
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closeResources(conn, st);
+        }
+    
+    }
+    
+    public List<Solicitacao> getRelacaoGrupos() throws ClassNotFoundException{
+        List<Solicitacao> lstSolicitacao = new ArrayList<Solicitacao>();
+      
+        Connection conn = null;
+        Statement stmt1 = null;
+        
+        try {
+            conn = DataBaseLocator.getInstance().getConnection();
+            String sql = "SELECT * FROM usuario" ;
+            stmt1 = conn.createStatement();
+            ResultSet rs = stmt1.executeQuery(sql);
+            
+            while (rs.next()) {  
+               //lstSolicitacao.add();
+            }
+
+        }catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            closeResources(conn, stmt1);
+        }
+           
+        return lstSolicitacao;
+        
     }
     
     private void closeResources(Connection conn, Statement st) {
